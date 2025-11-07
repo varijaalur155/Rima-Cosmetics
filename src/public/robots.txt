@@ -1,0 +1,63 @@
+# robots.txt for Rima Cosmetics
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /products
+Allow: /contact
+Allow: /cart
+
+# Disallow admin and internal pages
+Disallow: /admin
+Disallow: /login
+Disallow: /orders
+Disallow: /checkout
+Disallow: /order-success
+
+# Disallow search result pages with query parameters (except product categories)
+Disallow: /*?search=*
+
+# Allow product category filters
+Allow: /products?category=*
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://rimacosmetics.vercel.app/sitemap.xml
+
+# Specific rules for major search engines
+
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /orders
+Disallow: /checkout
+
+# Googlebot Image
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /login
+Crawl-delay: 1
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Disallow: /admin
+Disallow: /login
+Crawl-delay: 2
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Disallow: /admin
+Disallow: /login
+Crawl-delay: 2
