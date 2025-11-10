@@ -6,7 +6,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 export function LoginPage() {
   const [loginEmail, setLoginEmail] = useState('');
@@ -97,6 +97,7 @@ export function LoginPage() {
                 </Button>
               </form>
 
+              {/*
               <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                 <p className="mb-2">Demo Admin Account:</p>
                 <p className="text-gray-700">
@@ -107,6 +108,7 @@ export function LoginPage() {
                   Note: Create your own account using the Sign Up tab!
                 </p>
               </div>
+              */}
             </TabsContent>
             
             <TabsContent value="signup">
