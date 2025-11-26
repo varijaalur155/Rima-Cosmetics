@@ -1,7 +1,12 @@
-import { serve } from '@hono/node-server'
-import { Hono } from 'hono'
-import { MailjetClient } from 'node-mailjet'
-import { Env } from './types' // Assuming you have a types file for environment variables
+import { serve } from 'npm:@hono/node-server'
+import { Hono } from 'npm:hono'
+import { Client } from 'npm:node-mailjet'
+
+interface Env {
+  MAILING_LIST_EMAIL: string;
+  MAILJET_API_KEY: string;
+  MAILJET_SECRET_KEY: string;
+}
 
 const app = new Hono()
 
@@ -15,7 +20,7 @@ app.post('/', async (c) => {
   try {
     const { order, customerDetails } = await c.req.json();
 
-    const mailjet = new MailjetClient({
+    const mailjet = new Client({
       apiKey: MAILJET_API_KEY,
       apiSecret: MAILJET_SECRET_KEY,
     });
