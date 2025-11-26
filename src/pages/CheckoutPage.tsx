@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { toast } from 'sonner';
-import { supabase } from '../utils/supabase/client';
+import { createClient } from '../utils/supabase/client';
 import { Order, ShippingAddress } from '../types';
 
 export function CheckoutPage() {
@@ -33,7 +33,7 @@ export function CheckoutPage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate form
@@ -63,7 +63,7 @@ export function CheckoutPage() {
 
     // Send order email via Supabase Edge Function
     try {
-      await supabase.functions.invoke('send-order-email', {
+      await createClient().functions.invoke('send-order-email', {
         body: JSON.stringify({ order, customerDetails: shippingAddress }),
       });
       console.log('Order email sent successfully');

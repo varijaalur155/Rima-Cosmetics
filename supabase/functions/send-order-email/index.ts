@@ -1,12 +1,7 @@
-import { serve } from 'npm:@hono/node-server'
-import { Hono } from 'npm:hono'
-import { MailjetClient } from 'npm:node-mailjet'
-
-interface Env {
-  MAILING_LIST_EMAIL: string;
-  MAILJET_API_KEY: string;
-  MAILJET_SECRET_KEY: string;
-}
+import { serve } from '@hono/node-server'
+import { Hono } from 'hono'
+import { MailjetClient } from 'node-mailjet'
+import { Env } from './types' // Assuming you have a types file for environment variables
 
 const app = new Hono()
 
