@@ -6,7 +6,8 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
+import { supabase } from '../utils/supabase/client';
 import { Order, ShippingAddress } from '../types';
 
 export function CheckoutPage() {
@@ -59,6 +60,17 @@ export function CheckoutPage() {
     // Save order to localStorage (in production, this would be saved to database)
     const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
     localStorage.setItem('orders', JSON.stringify([...existingOrders, order]));
+
+    // Send order email via Supabase Edge Function
+    try {
+      await supabase.functions.invoke('send-order-email', {
+        body: JSON.stringify({ order, customerDetails: shippingAddress }),
+      });
+      console.log('Order email sent successfully');
+    } catch (error) {
+      console.error('Error sending order email:', error);
+    }
+
 
     // Clear cart
     clearCart();
