@@ -1,6 +1,6 @@
 import { serve } from 'npm:@hono/node-server'
 import { Hono } from 'npm:hono'
-import { Client } from 'npm:node-mailjet'
+import * as Mailjet from 'npm:node-mailjet'
 
 interface Env {
   MAILING_LIST_EMAIL: string;
@@ -20,7 +20,7 @@ app.post('/', async (c) => {
   try {
     const { order, customerDetails } = await c.req.json();
 
-    const mailjet = new Client({
+    const mailjet = new Mailjet({
       apiKey: MAILJET_API_KEY,
       apiSecret: MAILJET_SECRET_KEY,
     });
