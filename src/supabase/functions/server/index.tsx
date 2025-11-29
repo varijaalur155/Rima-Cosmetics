@@ -1,19 +1,19 @@
-import { Hono } from 'npm:hono';
-import { cors } from 'npm:hono/cors';
-import { logger } from 'npm:hono/logger';
-import { createClient } from 'npm:@supabase/supabase-js';
+import { Hono, Context } from 'npm:hono@4.3.11';
+import { cors } from 'npm:hono@4.3.11/cors';
+import { logger } from 'npm:hono@4.3.11/logger';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js';
 import * as kv from './kv_store.tsx';
 
 const app = new Hono();
 
 // Middleware
-app.use('*', cors({
+app.use(cors({
   origin: '*',
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
 }));
 
-app.use('*', logger(console.log));
+app.use(logger(console.log));
 
 // Initialize Supabase client
 const supabase = createClient(
@@ -33,7 +33,7 @@ async function verifyUser(authHeader: string | null) {
 // ========== AUTH ROUTES ==========
 
 // Sign up new user
-app.post('/make-server-35cd97c6/signup', async (c) => {
+app.post('/make-server-35cd97c6/signup', async (c: Context) => {
   try {
     const { email, password, name } = await c.req.json();
 
@@ -60,8 +60,12 @@ app.post('/make-server-35cd97c6/signup', async (c) => {
         role: data.user.user_metadata.role || 'customer'
       }
     });
-  } catch (error) {
-    console.log(`Signup error: ${error.message}`);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.log(`Signup error: ${error.message}`);
+    } else {
+      console.log(`Signup error: An unknown error occurred`);
+    }
     return c.json({ error: 'Failed to create user' }, 500);
   }
 });
@@ -69,10 +73,13 @@ app.post('/make-server-35cd97c6/signup', async (c) => {
 // ========== ORDER ROUTES ==========
 
 // Create new order
-app.post('/make-server-35cd97c6/orders', async (c) => {
+app.post('/make-server-35cd97c6/orders', async (c: Context) => {
   try {
     const authHeader = c.req.header('Authorization');
-    const user = await verifyUser(authHeader);
+    let user = null;
+    if (authHeader) {
+      user = await verifyUser(authHeader);
+    }
     
     if (!user) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -109,16 +116,21 @@ app.post('/make-server-35cd97c6/orders', async (c) => {
     console.log(`Order created: ${orderId} for user ${user.id}`);
     return c.json({ success: true, order });
   } catch (error) {
-    console.log(`Create order error: ${error.message}`);
+    if (error instanceof Error) {
+      console.log(`Create order error: ${error.message}`);
+    }
     return c.json({ error: 'Failed to create order' }, 500);
   }
 });
 
 // Get user's orders
-app.get('/make-server-35cd97c6/orders', async (c) => {
+app.get('/make-server-35cd97c6/orders', async (c: Context) => {
   try {
     const authHeader = c.req.header('Authorization');
-    const user = await verifyUser(authHeader);
+    let user = null;
+    if (authHeader) {
+      user = await verifyUser(authHeader);
+    }
     
     if (!user) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -142,16 +154,21 @@ app.get('/make-server-35cd97c6/orders', async (c) => {
 
     return c.json({ orders });
   } catch (error) {
-    console.log(`Get orders error: ${error.message}`);
+    if (error instanceof Error) {
+      console.log(`Get orders error: ${error.message}`);
+    }
     return c.json({ error: 'Failed to fetch orders' }, 500);
   }
 });
 
 // Get single order
-app.get('/make-server-35cd97c6/orders/:id', async (c) => {
+app.get('/make-server-35cd97c6/orders/:id', async (c: Context) => {
   try {
     const authHeader = c.req.header('Authorization');
-    const user = await verifyUser(authHeader);
+    let user = null;
+    if (authHeader) {
+      user = await verifyUser(authHeader);
+    }
     
     if (!user) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -172,7 +189,9 @@ app.get('/make-server-35cd97c6/orders/:id', async (c) => {
 
     return c.json({ order });
   } catch (error) {
-    console.log(`Get order error: ${error.message}`);
+    if (error instanceof Error) {
+      console.log(`Get order error: ${error.message}`);
+    }
     return c.json({ error: 'Failed to fetch order' }, 500);
   }
 });
@@ -180,10 +199,13 @@ app.get('/make-server-35cd97c6/orders/:id', async (c) => {
 // ========== ADMIN ROUTES ==========
 
 // Get all orders (admin only)
-app.get('/make-server-35cd97c6/admin/orders', async (c) => {
+app.get('/make-server-35cd97c6/admin/orders', async (c: Context) => {
   try {
     const authHeader = c.req.header('Authorization');
-    const user = await verifyUser(authHeader);
+    let user = null;
+    if (authHeader) {
+      user = await verifyUser(authHeader);
+    }
     
     if (!user || user.user_metadata?.role !== 'admin') {
       return c.json({ error: 'Unauthorized - Admin access required' }, 403);
@@ -197,16 +219,21 @@ app.get('/make-server-35cd97c6/admin/orders', async (c) => {
 
     return c.json({ orders: allOrders });
   } catch (error) {
-    console.log(`Admin get all orders error: ${error.message}`);
+    if (error instanceof Error) {
+      console.log(`Admin get all orders error: ${error.message}`);
+    }
     return c.json({ error: 'Failed to fetch orders' }, 500);
   }
 });
 
 // Update order status (admin only)
-app.put('/make-server-35cd97c6/admin/orders/:id', async (c) => {
+app.put('/make-server-35cd97c6/admin/orders/:id', async (c: Context) => {
   try {
     const authHeader = c.req.header('Authorization');
-    const user = await verifyUser(authHeader);
+    let user = null;
+    if (authHeader) {
+      user = await verifyUser(authHeader);
+    }
     
     if (!user || user.user_metadata?.role !== 'admin') {
       return c.json({ error: 'Unauthorized - Admin access required' }, 403);
@@ -233,7 +260,9 @@ app.put('/make-server-35cd97c6/admin/orders/:id', async (c) => {
     console.log(`Order ${orderId} status updated to ${status} by admin ${user.id}`);
     return c.json({ success: true, order: updatedOrder });
   } catch (error) {
-    console.log(`Update order status error: ${error.message}`);
+    if (error instanceof Error) {
+      console.log(`Update order status error: ${error.message}`);
+    }
     return c.json({ error: 'Failed to update order status' }, 500);
   }
 });
@@ -241,18 +270,20 @@ app.put('/make-server-35cd97c6/admin/orders/:id', async (c) => {
 // ========== PRODUCT ROUTES ==========
 
 // Get all products
-app.get('/make-server-35cd97c6/products', async (c) => {
+app.get('/make-server-35cd97c6/products', async (c: Context) => {
   try {
     const products = await kv.getByPrefix('product:');
     return c.json({ products });
   } catch (error) {
-    console.log(`Get products error: ${error.message}`);
+    if (error instanceof Error) {
+      console.log(`Get products error: ${error.message}`);
+    }
     return c.json({ error: 'Failed to fetch products' }, 500);
   }
 });
 
 // Get single product
-app.get('/make-server-35cd97c6/products/:id', async (c) => {
+app.get('/make-server-35cd97c6/products/:id', async (c: Context) => {
   try {
     const productId = c.req.param('id');
     const product = await kv.get(`product:${productId}`);
@@ -263,16 +294,21 @@ app.get('/make-server-35cd97c6/products/:id', async (c) => {
     
     return c.json({ product });
   } catch (error) {
-    console.log(`Get product error: ${error.message}`);
+    if (error instanceof Error) {
+      console.log(`Get product error: ${error.message}`);
+    }
     return c.json({ error: 'Failed to fetch product' }, 500);
   }
 });
 
 // Create product (admin only)
-app.post('/make-server-35cd97c6/admin/products', async (c) => {
+app.post('/make-server-35cd97c6/admin/products', async (c: Context) => {
   try {
     const authHeader = c.req.header('Authorization');
-    const user = await verifyUser(authHeader);
+    let user = null;
+    if (authHeader) {
+      user = await verifyUser(authHeader);
+    }
     
     if (!user || user.user_metadata?.role !== 'admin') {
       return c.json({ error: 'Unauthorized - Admin access required' }, 403);
@@ -292,16 +328,21 @@ app.post('/make-server-35cd97c6/admin/products', async (c) => {
     console.log(`Product created: ${productId} by admin ${user.id}`);
     return c.json({ success: true, product });
   } catch (error) {
-    console.log(`Create product error: ${error.message}`);
+    if (error instanceof Error) {
+      console.log(`Create product error: ${error.message}`);
+    }
     return c.json({ error: 'Failed to create product' }, 500);
   }
 });
 
 // Update product (admin only)
-app.put('/make-server-35cd97c6/admin/products/:id', async (c) => {
+app.put('/make-server-35cd97c6/admin/products/:id', async (c: Context) => {
   try {
     const authHeader = c.req.header('Authorization');
-    const user = await verifyUser(authHeader);
+    let user = null;
+    if (authHeader) {
+      user = await verifyUser(authHeader);
+    }
     
     if (!user || user.user_metadata?.role !== 'admin') {
       return c.json({ error: 'Unauthorized - Admin access required' }, 403);
@@ -328,16 +369,21 @@ app.put('/make-server-35cd97c6/admin/products/:id', async (c) => {
     console.log(`Product updated: ${productId} by admin ${user.id}`);
     return c.json({ success: true, product: updatedProduct });
   } catch (error) {
-    console.log(`Update product error: ${error.message}`);
+    if (error instanceof Error) {
+      console.log(`Update product error: ${error.message}`);
+    }
     return c.json({ error: 'Failed to update product' }, 500);
   }
 });
 
 // Delete product (admin only)
-app.delete('/make-server-35cd97c6/admin/products/:id', async (c) => {
+app.delete('/make-server-35cd97c6/admin/products/:id', async (c: Context) => {
   try {
     const authHeader = c.req.header('Authorization');
-    const user = await verifyUser(authHeader);
+    let user = null;
+    if (authHeader) {
+      user = await verifyUser(authHeader);
+    }
     
     if (!user || user.user_metadata?.role !== 'admin') {
       return c.json({ error: 'Unauthorized - Admin access required' }, 403);
@@ -356,13 +402,15 @@ app.delete('/make-server-35cd97c6/admin/products/:id', async (c) => {
     console.log(`Product deleted: ${productId} by admin ${user.id}`);
     return c.json({ success: true, message: 'Product deleted' });
   } catch (error) {
-    console.log(`Delete product error: ${error.message}`);
+    if (error instanceof Error) {
+      console.log(`Delete product error: ${error.message}`);
+    }
     return c.json({ error: 'Failed to delete product' }, 500);
   }
 });
 
 // Health check
-app.get('/make-server-35cd97c6/health', (c) => {
+app.get('/make-server-35cd97c6/health', (c: Context) => {
   return c.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
