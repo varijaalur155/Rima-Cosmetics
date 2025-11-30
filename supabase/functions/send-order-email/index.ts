@@ -1,6 +1,7 @@
 import { Hono, Context } from 'npm:hono@4.3.11'
 import * as kv from '../../../src/supabase/functions/server/kv_store.tsx';
 import { Resend } from 'npm:resend@6.5.2';
+import { cors } from 'npm:hono@4.3.11/cors';
 
 console.log('Imports completed.');
 
@@ -18,6 +19,12 @@ app.options('/*', (c: Context) => {
     'Access-Control-Allow-Origin': '*'
   });
 })
+
+app.use(cors({
+  origin: '*',
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowHeaders: ['Content-Type', 'Authorization'],
+}));
 
 app.post('/', async (c: Context) => {
   console.log('Edge Function Invoked');
