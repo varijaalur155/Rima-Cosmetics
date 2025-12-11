@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "lib": ["deno.ns", "deno.window"],
+    "types": ["https://deno.land/x/hono/mod.ts", "https://esm.sh/@supabase/supabase-js"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  },
+  "imports": {
+    "hono": "https://deno.land/x/hono/mod.ts",
+    "hono/middleware": "https://deno.land/x/hono/middleware.ts",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js"
+  },
+  "lint": {
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
+  "fmt": {
+    "options": {
+      "useTabs": false,
+      "lineWidth": 80,
+      "indentWidth": 2,
+      "singleQuote": true,
+      "proseWrap": "preserve"
+    }
+  }
+}

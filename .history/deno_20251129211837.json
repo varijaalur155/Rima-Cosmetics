@@ -1,0 +1,11 @@
+{
+  "imports": {
+    "hono": "https://deno.land/x/hono/mod.ts",
+    "hono/middleware": "https://deno.land/x/hono/middleware.ts",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js"
+  },
+  "compilerOptions": {
+    "lib": ["deno.ns", "dom", "dom.iterable"],
+    "strict": true
+  }
+}

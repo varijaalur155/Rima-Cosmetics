@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["deno.window", "deno.unstable"],
+    "types": ["https://deno.land/x/hono/mod.ts", "https://deno.land/x/hono/middleware.ts", "https://esm.sh/@supabase/supabase-js"]
+  },
+  "lint": {
+    "rules": {
+      "exclude": ["no-explicit-any", "no-unused-vars"]
+    }
+  }
+}
