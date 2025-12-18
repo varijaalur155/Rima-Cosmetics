@@ -34,6 +34,7 @@ export interface ShippingAddress {
   city: string;
   state: string;
   pincode: string;
+  country?: string;
 }
 
 export interface User {

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useAuth } from '../contexts/AuthContext.tsx';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card.tsx';
-import { Badge } from '../components/ui/badge.tsx';
-import { Order } from '../types/index.ts';
+import { useAuth } from '../contexts/AuthContext';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Badge } from '../components/ui/badge';
+import { Order } from '../types';
 import { Package, Truck, CheckCircle, Clock, MapPin } from 'lucide-react';
-import { projectId } from '../utils/supabase/info.tsx';
+import { projectId } from '../utils/supabase/info';
 
 export function OrdersPage() {
   const { user, accessToken } = useAuth();
