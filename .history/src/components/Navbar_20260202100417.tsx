@@ -65,6 +65,14 @@ export function Navbar() {
             >
               Contact
             </Link>
+            <Link
+              to="/blog"
+              className={`${
+                isActive('/blog') || location.pathname.startsWith('/blog/') ? 'text-green-600' : 'text-gray-700 hover:text-green-600'
+              } transition-colors`}
+            >
+              Blog
+            </Link>
             {user && user.role === 'admin' && (
               <Link
                 to="/admin"
@@ -126,7 +134,7 @@ export function Navbar() {
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[280px] sm:w-[350px]">
+              <SheetContent side="right" className="w-3/4 sm:w-2/3 max-w-sm">
                 <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
                   <SheetDescription>
@@ -177,6 +185,17 @@ export function Navbar() {
                     }`}
                   >
                     Contact
+                  </Link>
+                  <Link
+                    to="/blog"
+                    onClick={handleLinkClick}
+                    className={`py-3 px-4 rounded-lg transition-colors ${
+                      isActive('/blog') || location.pathname.startsWith('/blog/') 
+                        ? 'bg-green-50 text-green-600' 
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    Blog
                   </Link>
                   {user && user.role === 'admin' && (
                     <Link
