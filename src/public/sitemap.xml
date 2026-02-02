@@ -5,7 +5,7 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://rimacosmetics.vercel.app/</loc>
+    <loc>https://rima-cosmetics.vercel.app/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -13,7 +13,7 @@
   
   <!-- About Page -->
   <url>
-    <loc>https://rimacosmetics.vercel.app/about</loc>
+    <loc>https://rima-cosmetics.vercel.app/about</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -21,7 +21,7 @@
   
   <!-- Products Page -->
   <url>
-    <loc>https://rimacosmetics.vercel.app/products</loc>
+    <loc>https://rima-cosmetics.vercel.app/products</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -29,7 +29,7 @@
   
   <!-- Contact Page -->
   <url>
-    <loc>https://rimacosmetics.vercel.app/contact</loc>
+    <loc>https://rima-cosmetics.vercel.app/contact</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -37,7 +37,7 @@
   
   <!-- Cart Page -->
   <url>
-    <loc>https://rimacosmetics.vercel.app/cart</loc>
+    <loc>https://rima-cosmetics.vercel.app/cart</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -45,7 +45,7 @@
   
   <!-- Login Page -->
   <url>
-    <loc>https://rimacosmetics.vercel.app/login</loc>
+    <loc>https://rima-cosmetics.vercel.app/login</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
@@ -53,30 +53,137 @@
   
   <!-- Individual Product Categories -->
   <url>
-    <loc>https://rimacosmetics.vercel.app/products?category=hair-care</loc>
+    <loc>https://rima-cosmetics.vercel.app/products?category=hair-care</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://rimacosmetics.vercel.app/products?category=skin-care</loc>
+    <loc>https://rima-cosmetics.vercel.app/products?category=skin-care</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://rimacosmetics.vercel.app/products?category=soap</loc>
+    <loc>https://rima-cosmetics.vercel.app/products?category=soap</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://rimacosmetics.vercel.app/products?category=lip-care</loc>
+    <loc>https://rima-cosmetics.vercel.app/products?category=lip-care</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url> 
+
+  <!-- Blog Page -->>
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Individual Blog Posts -->
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/cosmetic-shop-near-me</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/moisturizing-cream-guide</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/betnovate-cream-alternatives</loc>
+    <lastmod>2026-01-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/prp-hair-treatment-guide</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/beta-hydroxy-acid-explained</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/clinic-skin-care-vs-natural</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/manicure-pedicure-guide</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/fine-face-cream-selection</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/tan-removal-remedies</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/skin-whitening-brightening-home-remedies</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/dark-spots-dark-circles-natural-remedies</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/face-serum-toner-exfoliator-guide</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/complete-personal-care-skin-health-guide</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rima-cosmetics.vercel.app/blog/hair-dandruff-lip-blush-facial-treatments</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 

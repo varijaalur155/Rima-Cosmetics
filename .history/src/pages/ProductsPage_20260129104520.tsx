@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { products } from '../data/products';
-import { Card, CardContent } from '../components/ui/card';
-import { Button } from '../components/ui/button';
+import { products } from '../data/products.ts';
+import { Card, CardContent } from '../components/ui/card.tsx';
+import { Button } from '../components/ui/button.tsx';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from '../contexts/CartContext.tsx';
 import { ShoppingCart } from 'lucide-react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { toast } from 'sonner@2.0.3';
-import { SEO } from '../components/SEO';
+
+import { toast } from 'sonner';
+import { SEO } from '../components/SEO.tsx';
 
 export function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -66,12 +66,16 @@ export function ProductsPage() {
           {filteredProducts.map((product) => (
             <Card key={product.id} className="hover:shadow-lg transition-shadow">
               <CardContent className="p-4">
-                <div className="aspect-square mb-4 overflow-hidden rounded-lg bg-gray-100">
-                  <ImageWithFallback
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-contain hover:scale-105 transition-transform"
-                  />
+                <div className="w-48 h-48 mb-4 overflow-hidden rounded-lg bg-gray-100">
+                  <picture>
+                    <source srcSet={`${product.image.replace(/\.(png|jpg|jpeg)$/, '.webp')}`} type="image/webp" />
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
                 <h3 className="mb-2">{product.name}</h3>
                 {product.volume && (
@@ -94,6 +98,12 @@ export function ProductsPage() {
               </CardContent>
             </Card>
           ))}
+        </div>
+        <div className="text-center mt-12 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 rounded-lg shadow-sm">
+          <p className="font-semibold text-lg mb-2">Important Payment Information</p>
+          <p className="text-md">
+            After placing your order, please contact the business owner on WhatsApp at <a href="https://wa.me/+918076045877" target="_blank" rel="noopener noreferrer" className="text-yellow-900 underline font-medium">+918076045877</a> and send a screenshot of your payment for order confirmation.
+          </p>
         </div>
       </div>
     </div>

@@ -15,6 +15,8 @@ import { LoginPage } from './pages/LoginPage';
 import { OrdersPage } from './pages/OrdersPage';
 import { AdminPage } from './pages/AdminPage';
 import { OrderSuccessPage } from './pages/OrderSuccessPage';
+import { BlogPage } from './pages/BlogPage';
+import { BlogPostPage } from './pages/BlogPostPage';
 
 export default function App() {
   return (
@@ -35,6 +37,8 @@ export default function App() {
                 <Route path="/orders" element={<OrdersPage />} />
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/order-success" element={<OrderSuccessPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />
                 {/* Catch-all route - redirects to home */}
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>

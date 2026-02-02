@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { products } from '../data/products';
-import { Card, CardContent } from '../components/ui/card';
-import { Button } from '../components/ui/button';
+import { products } from '../data/products.ts';
+import { Card, CardContent } from '../components/ui/card.tsx';
+import { Button } from '../components/ui/button.tsx';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from '../contexts/CartContext.tsx';
 import { ShoppingCart } from 'lucide-react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { toast } from 'sonner@2.0.3';
-import { SEO } from '../components/SEO';
+
+import { toast } from 'sonner';
+import { SEO } from '../components/SEO.tsx';
 
 export function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -67,11 +67,15 @@ export function ProductsPage() {
             <Card key={product.id} className="hover:shadow-lg transition-shadow">
               <CardContent className="p-4">
                 <div className="w-48 h-48 mb-4 overflow-hidden rounded-lg bg-gray-100">
-                  <ImageWithFallback
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform"
-                  />
+                  <picture>
+                    <source srcSet={`${product.image.replace(/\.(png|jpg|jpeg)$/, '.webp')}`} type="image/webp" />
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
                 <h3 className="mb-2">{product.name}</h3>
                 {product.volume && (
